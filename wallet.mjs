@@ -1,95 +1,95 @@
-import Waves from '/static/html/components/component_modules/bundle/waves/waves.mjs'
+import Waves from '/static/html/components/component_modules/waves/waves.mjs'
+import actions from '/static/html/components/component_modules/relation/waves.mjs'
+import emoji from '/static/html/components/component_modules/emoji/emoji.mjs';
+let waves =  Waves()
+let testObject = {}
+testObject.staticProperty = {}
+testObject.staticProperty.wallet = []
+waves.then((waves)=>{
     const wvs = 10 ** 8;
     let object = {}
-        object.dapp = '3N8n4Lc8BMsPPyVHJXTivQWs7ER61bB7wQn'
-        object.testnodes = ' https://pool.testnet.wavesnodes.com'
-        object.client = []
-        object.client.alice = '3MvegjWphvbYgEgQmqJiJhYWXnqPNTpieVc'
-    describe('test waves suite', async function () {
-        this.timeout(100000);
+    object.dapp = '3N8n4Lc8BMsPPyVHJXTivQWs7ER61bB7wQn'
+    object.testnodes = 'http://testnodes.wavesnodes.com'
+    object.client = []
+    object.client.alice = '3MvegjWphvbYgEgQmqJiJhYWXnqPNTpieVc'
+
+    describe('Post office test suite', async function () {
+        this.timeout(10000);
 
         before(async function () {
-            // await setupAccounts(
-            //     {foofoofoofoofoofoofoofoofoofoofoo: 10 * wvs,
-            //          barbarbarbarbarbarbarbarbarbar: 2 * wvs,
-            //           wallet: 0.05 * wvs});
-            // const script = compile(file('wallet.ride'));
-            // const ssTx = setScript({script}, accounts.wallet);
-            // await broadcast(ssTx);
-            // await waitForTx(ssTx.id)
+            console.log('emoji', emoji('all'))
+            console.thinking('(((~~~))) waves (((~~~)))',emoji('thinking'), waves)
         });
-        describe('connecting dapp', async function () {
-            this.timeout(100000);
 
-            it('accountData', async function () {
-                let dAppData = await Waves['default']['transactions']['nodeInteraction'].accountData(object.dapp, object.testnodes)
-                // if (dAppData) {
-                //     window.dAppDataKeys = Object.keys(dAppData);
-                //     console.log("dApp Account data:");
-                //     console.log(dAppData);
-                // }
+        it('Connect bank(подключение банка)', function () {
+            return new Promise(function (resolve, reject) {
+                waves.bank(true, `${emoji('thinking')} какие то свойства`,'3', actions,'bank')
+                document.addEventListener('connected-bank',async (event)=>{
+                    switch (event['detail']['/']) {
+                        case 'bank':
+                            if (event.detail.dAppData) {
+                                console.log("dApp Account data:");
+                                console.log(event.detail.dAppData);
+                            }
+                            break
+                        default:
+                            console.warn(`${emoji('thinking')}результат не обрабатывается${emoji('thinking')}`, event['detail']['/'], event['detail'])
+                            break
+                    }
+                    resolve(event.detail.dAppData)
+                })
             })
-
-            it('balanceDetails', async function () {
-                let accountbalance = await  Waves['default']['transactions']['nodeInteraction']['balanceDetails'](object.dapp, object.testnodes)
-                accountbalance = accountbalance['regular'] / wvs
-                console.log('balanceDetails', accountbalance)
-            })
-
-            it('accountDataByKey', async function () {
-
-                let accountBalance = await  Waves['default']['transactions']['nodeInteraction']['accountDataByKey'](`${object.client.alice}_balance`, object.dapp, object.testnodes)
-                console.log('balanceDetails', accountBalance)
-            })
-
         })
 
-
-
-        it('Can deposit', async function () {
-
-            // const iTxFoo = invokeScript({
-            //     dApp: address(accounts.wallet),
-            //     call: {function: "deposit"},
-            //     payment: [{assetId: null, amount: 0.9 * wvs}]
-            // }, accounts.foofoofoofoofoofoofoofoofoofoofoo);
-
-
-            // const iTxBar = invokeScript({
-            //     dApp: address(accounts.wallet),
-            //     call: {function: "deposit"},
-            //     payment: [{assetId: null, amount: 1.9 * wvs}]
-            // }, accounts.barbarbarbarbarbarbarbarbarbar)
-
-
-            // await broadcast(iTxFoo);
-            // await broadcast(iTxBar);
-            // await waitForTx(iTxFoo.id);
-            // await waitForTx(iTxBar.id);
+        it('Create wallet(создание кошелька)', function () {
+            return new Promise(function (resolve, reject) {
+                waves.wallet(true, `${emoji('thinking')} какие то свойства`, '3', actions, 'wallet')
+                document.addEventListener('created-wallet', async (event) => {
+                    switch (event['detail']['/']) {
+                        case 'wallet':
+                            testObject.staticProperty.wallet = event.detail
+                            console.log(`${emoji(`dancer`)}`, event.detail, `${emoji(`dancer`)}`)
+                            break
+                        default:
+                            console.warn(`${emoji('thinking')}результат не обрабатывается${emoji('thinking')}`, event['detail']['/'], event['detail'])
+                            break
+                    }
+                    resolve(event.detail.wallet)
+                })
+            })
         })
+        describe('Save wallet', async function () {
 
-        it('Cannot withdraw more than was deposited', async function () {
-            // const iTxFoo = invokeScript({
-            //     dApp: address(accounts.wallet),
-            //     call: {
-            //         function: "withdraw",
-            //         args: [{type:'integer', value: 2 * wvs}]
-            //     },
-            //
-            // }, accounts.foofoofoofoofoofoofoofoofoofoofoo);
-            //
-            // expect(broadcast(iTxFoo)).to.be.rejectedWith("Not enough balance")
-        })
+            it('Send wallet(сохранение кошелька)', function () {
+                return new Promise(async (resolve, reject)=>{
+                    let scrollWidth = Math.max(
+                        document.body.scrollWidth, document.documentElement.scrollWidth,
+                        document.body.offsetWidth, document.documentElement.offsetWidth,
+                        document.body.clientWidth, document.documentElement.clientWidth
+                    );
+                    window.open(`http://localhost:5401`,'github',`height=${scrollWidth/3},width=${scrollWidth/1.5},scrollbars=no,toolbar=no,menubar=no,status=no,resizable=no,scrollbars=no,location=no,top=${scrollWidth/2-((scrollWidth/1.5)/2)},left=${scrollWidth/2-((scrollWidth/1.8)/2)}`);
+                    window.addEventListener("message", (event) => {
+                        console.log('connect', event.data)
+                        if(event.data.file === 'true'){
+                            resolve(true)
+                        }else{
+                            event.source.postMessage({key:'value'},'http://localhost:5401')
+                        }
+                    });
 
-        it('Can withdraw', async function () {
-            // const iTxFoo = invokeScript({
-            //     dApp: address(accounts.wallet),
-            //     call: {
-            //         function: "withdraw",
-            //         args: [{ type: 'integer', value: 0.9 * wvs }]
-            //     },
-            //
-            // }, accounts.foofoofoofoofoofoofoofoofoofoofoo);
-            // await broadcast(iTxFoo)
+                })
+            })
+
+            it('Faucet for wallet(перевод средств на кошелёк)', function () {
+                return new Promise(async (resolve, reject)=>{
+                    waves.faucet(true, `${emoji('thinking')} какие то свойства`, '3', actions, 'faucet')
+
+
+
+
+                })
+            })
+
         })
     })
+})

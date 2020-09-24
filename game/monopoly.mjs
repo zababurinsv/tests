@@ -1,4 +1,3 @@
-import monopoly from '/static/html/components/component_modules/monopoly/net.mjs'
 const wvs = 10 ** 8;
 let object = {}
 object.dapp = '3N8n4Lc8BMsPPyVHJXTivQWs7ER61bB7wQn'
