@@ -7,7 +7,7 @@
     "doc": "contract-deals"
   },
   "scripts": {
-    "gitHub": "git status && git add -A && git commit -am 'update' && git push"
+    "git_tests": "git status && git add -A && git commit -am 'update' && git push"
   },
   "repository": {
     "type": "git",
