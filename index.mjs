@@ -4,7 +4,6 @@ import task from '/static/html/components/component_modules/heap/index.mjs'
 describe('task manager', async function () {
   this.timeout(10000);
   before(async function () {
-    console.log('task:', task)
     console.log('emoji', emoji('all'))
   });
   it('# set task before', function () {
@@ -17,12 +16,12 @@ describe('task manager', async function () {
   })
   it('# set task after', function () {
     return new Promise(async (resolve, reject) => {
-    let res = await task.set(true, 'get test', '5', {
+      let response = await task.set(true, 'get test', '5', {
         test:"ok"
-      },'/test-heap')
-      (res.status)
-      ?resolve()
-      :reject()
+      },'/test-heap');
+      (response.status)
+      ? resolve()
+      : reject()
     })
   })
 })
