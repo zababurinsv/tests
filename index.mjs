@@ -6,22 +6,36 @@ describe('task manager', async function () {
   before(async function () {
     console.log('emoji', emoji('all'))
   });
-  it('# set task before', function () {
-    return new Promise(async (resolve, reject) => {
-      task.get(true, 'await', '5', '','/test-heap', async (object)=>{
-        object.callback({status:true})
+  describe('case №1', async function () {
+    it('# set task before', function () {
+      return new Promise(async (resolve, reject) => {
+        let response = {}
+        let request = [];
+        [2, 5, 3, 9].forEach((element, index, array)=>{
+          request.push(task.set(true, `get test ${index}`, '5', {
+            test:element
+          },'/test-heap'));
+        });
+        await task.get(true, 'await', '5', '','/test-heap', async (object)=>{
+          object.callback({status:true})
+        })
+        resolve()
       })
-      resolve()
     })
-  })
-  it('# set task after', function () {
-    return new Promise(async (resolve, reject) => {
-      let response = await task.set(true, 'get test', '5', {
-        test:"ok"
-      },'/test-heap');
-      (response.status)
-      ? resolve()
-      : reject()
+    it('# set task after', function () {
+      return new Promise(async (resolve, reject) => {
+        let response = {}
+        let request = [];
+        [2, 5, 3, 9].forEach((element, index, array)=>{
+          request.push(task.set(true, `get test ${index}`, '5', {
+            test:element
+          },'/test-heap'));
+        });
+        response = await Promise.all(request);
+        (response)
+        ? resolve()
+        : reject()
+      })
     })
   })
 })
