@@ -11,11 +11,9 @@ describe('task manager', async function () {
     it('set await', function () {
       return new Promise(async (resolve, reject) => {
        await task.get(true, 'await', '5', '','/test-heap', async (object)=>{
-          console.log('test 1')
           object.callback({status:true})
         })
         await task.get(true, 'await', '5', '','/test-heap', async (object)=>{
-          console.log('test 2')
           object.callback({status:true})
         })
         resolve(true)
@@ -53,11 +51,9 @@ describe('task manager', async function () {
       return new Promise(async (resolve, reject) => {
         await task.list()
         await task.get(true, 'await', '5', '','/test-heap', async (object)=>{
-          console.log('test 3')
           object.callback({status:true})
         });
        let getTask = await task.get(true, 'await', '5', '','/test-heap', async (object)=>{
-          console.log('test 4')
           object.callback({status:true})
         })
         let request = [];
