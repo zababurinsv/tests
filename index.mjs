@@ -10,37 +10,41 @@ describe('task manager', async function () {
   describe('case №1', async function () {
     it('set await', function () {
       return new Promise(async (resolve, reject) => {
-       let res = await task.get(true, 'await', '5', '','/test-heap', async (object)=>{
+       await task.get(true, 'await', '5', '','/test-heap', async (object)=>{
           object.callback({status:true})
         })
-        resolve(res)
+        await task.get(true, 'await', '5', '','/test-heap', async (object)=>{
+          object.callback({status:true})
+        })
+        resolve(true)
       })
     })
     it('set task', function () {
       return new Promise(async (resolve, reject) => {
-        let request = [];
-        [2].forEach((element, index, array)=>{
-          request.push(task.set(true, `get test ${index}`, '5', {
-            test:element
-          },'/test-heap'));
-        });
-       let response = await Promise.all(request); 
-       (!isEmpty(response))
-        ? resolve()
-        : reject()
+        // let request = [];
+        // [2].forEach((element, index, array)=>{
+        //   request.push(task.set(true, `get test ${index}`, '5', {
+        //     test:element
+        //   },'/test-heap'));
+        // });
+       // let response = await Promise.all(request);
+       // (!isEmpty(response))
+       //  ? resolve()
+       //  : reject()
+        resolve(true)
       })
     })
   })
   describe('case №2', async function () {
     it('set task', function () {
       return new Promise(async (resolve, reject) => {
-        let response = {}
-        let request = [];
-        [2, 5, 3, 9].forEach((element, index, array)=>{
-          request.push(task.set(true, `get test ${index}`, '5', {
-            test:element
-          },'/test-heap2'));
-        });
+        // let response = {}
+        // let request = [];
+        // [2, 5, 3, 9].forEach((element, index, array)=>{
+        //   request.push(task.set(true, `get test ${index}`, '5', {
+        //     test:element
+        //   },'/test-heap2'));
+        // });
         resolve(true)
       })
     })
@@ -57,21 +61,22 @@ describe('task manager', async function () {
         // // (response)
         // // ? resolve()
         // : reject()
-        resolve()
+        resolve(true)
       })
     })
   })
   describe('case №3', async function () {
     it('task list', function () {
       return new Promise(async (resolve, reject) => {
-        task.list()  
-        resolve()
+       let list = await task.list()
+       console.log(list)
+       resolve()
       })
     })
     it('task close', function () {
       return new Promise(async (resolve, reject) => {
-        task.close(true,`close`,'5',{},'/test-heap')
-        resolve()
+        // task.close(true,`close`,'5',{},'/test-heap')
+        resolve(true)
       })
     })
   })
