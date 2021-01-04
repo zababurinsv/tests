@@ -23,60 +23,64 @@ describe('task manager', async function () {
     })
     it('set task', function () {
       return new Promise(async (resolve, reject) => {
-        // let request = [];
-        // [2].forEach((element, index, array)=>{
-        //   request.push(task.set(true, `get test ${index}`, '5', {
-        //     test:element
-        //   },'/test-heap'));
-        // });
-       // let response = await Promise.all(request);
-       // (!isEmpty(response))
-       //  ? resolve()
-       //  : reject()
-        resolve(true)
+        let request = [];
+        [0,1,2,3].forEach((element, index, array)=>{
+          request.push(task.set(true, `get test ${index}`, '5', {
+            test:element
+          },'/test-heap'));
+        });
+       await task.close(true,`close`,'5',{},'/test-heap');
+       let response = await Promise.all(request);
+       (!isEmpty(response))
+        ? resolve()
+        : reject()
       })
     })
   })
   describe('case №2', async function () {
     it('set task', function () {
       return new Promise(async (resolve, reject) => {
-        // let response = {}
-        // let request = [];
-        // [2, 5, 3, 9].forEach((element, index, array)=>{
-        //   request.push(task.set(true, `get test ${index}`, '5', {
-        //     test:element
-        //   },'/test-heap2'));
-        // });
+        let request = [];
+        [2, 5, 3, 9].forEach((element, index, array)=>{
+          request.push(task.set(true, `get test ${index}`, '5', {
+            test:element
+          },'/test-heap'));
+        });
         resolve(true)
       })
     })
     it('set await', function () {
       return new Promise(async (resolve, reject) => {
-        // let response = {}
-        // // let request = [];
-        // // [2, 5, 3, 9].forEach((element, index, array)=>{
-        //   // request.push(task.set(true, `get test ${index}`, '5', {
-          // //   test:element
-        //   // },'/test-heap'));
-        // // });
-        // // response = await Promise.all(request);
-        // // (response)
-        // // ? resolve()
-        // : reject()
-        resolve(true)
+        await task.list()
+        await task.get(true, 'await', '5', '','/test-heap', async (object)=>{
+          console.log('test 3')
+          object.callback({status:true})
+        });
+       let getTask = await task.get(true, 'await', '5', '','/test-heap', async (object)=>{
+          console.log('test 4')
+          object.callback({status:true})
+        })
+        let request = [];
+        [2, 5, 3, 9].forEach((element, index, array)=>{
+          request.push(task.set(true, `get test ${index}`, '5', {
+            test:element
+          },'/test-heap'));
+        });
+        resolve(getTask)
       })
     })
   })
   describe('case №3', async function () {
     it('task list', function () {
       return new Promise(async (resolve, reject) => {
-       task.list()
+       await task.list()
        resolve()
       })
     })
     it('task close', function () {
       return new Promise(async (resolve, reject) => {
-        let remove =   await task.close(true,`close`,'5',{},'/test-heap')
+        await task.close(true,`close`,'5',{},'/test-heap')
+        await task.list()
         resolve(true)
       })
     })
