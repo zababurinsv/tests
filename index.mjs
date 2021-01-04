@@ -8,19 +8,18 @@ describe('task manager', async function () {
     console.log('emoji', emoji('moon'))
   });
   describe('case №1', async function () {
-    it('# set task before', function () {
+    it('set await', function () {
       return new Promise(async (resolve, reject) => {
        let res = await task.get(true, 'await', '5', '','/test-heap', async (object)=>{
           object.callback({status:true})
         })
-        console.log('response №1', res)
         resolve(res)
       })
     })
-    it('# set task after', function () {
+    it('set task', function () {
       return new Promise(async (resolve, reject) => {
         let request = [];
-        [2, 5, 3, 9].forEach((element, index, array)=>{
+        [2].forEach((element, index, array)=>{
           request.push(task.set(true, `get test ${index}`, '5', {
             test:element
           },'/test-heap'));
@@ -33,22 +32,19 @@ describe('task manager', async function () {
     })
   })
   describe('case №2', async function () {
-    it('# set task before', function () {
+    it('set task', function () {
       return new Promise(async (resolve, reject) => {
-        // let response = {}
-        // let request = [];
-        // [2, 5, 3, 9].forEach((element, index, array)=>{
-          // request.push(task.set(true, `get test ${index}`, '5', {
-            // test:element
-          // },'/test-heap'));
-        // });
-        // await task.get(true, 'await', '5', '','/test-heap', async (object)=>{
-          // object.callback({status:true})
-        // })
-        resolve()
+        let response = {}
+        let request = [];
+        [2, 5, 3, 9].forEach((element, index, array)=>{
+          request.push(task.set(true, `get test ${index}`, '5', {
+            test:element
+          },'/test-heap2'));
+        });
+        resolve(true)
       })
     })
-    it('# set task after', function () {
+    it('set await', function () {
       return new Promise(async (resolve, reject) => {
         // let response = {}
         // // let request = [];
@@ -65,14 +61,14 @@ describe('task manager', async function () {
       })
     })
   })
-  describe('* case №3', async function () {
-    it('** task list', function () {
+  describe('case №3', async function () {
+    it('task list', function () {
       return new Promise(async (resolve, reject) => {
         task.list()  
         resolve()
       })
     })
-    it('** task close', function () {
+    it('task close', function () {
       return new Promise(async (resolve, reject) => {
         task.close(true,`close`,'5',{},'/test-heap')
         resolve()
