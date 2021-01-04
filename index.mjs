@@ -11,9 +11,11 @@ describe('task manager', async function () {
     it('set await', function () {
       return new Promise(async (resolve, reject) => {
        await task.get(true, 'await', '5', '','/test-heap', async (object)=>{
+          console.log('test 1')
           object.callback({status:true})
         })
         await task.get(true, 'await', '5', '','/test-heap', async (object)=>{
+          console.log('test 2')
           object.callback({status:true})
         })
         resolve(true)
@@ -68,14 +70,13 @@ describe('task manager', async function () {
   describe('case №3', async function () {
     it('task list', function () {
       return new Promise(async (resolve, reject) => {
-       let list = await task.list()
-       console.log(list)
+       task.list()
        resolve()
       })
     })
     it('task close', function () {
       return new Promise(async (resolve, reject) => {
-        // task.close(true,`close`,'5',{},'/test-heap')
+        let remove =   await task.close(true,`close`,'5',{},'/test-heap')
         resolve(true)
       })
     })
