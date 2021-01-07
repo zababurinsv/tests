@@ -81,4 +81,18 @@ describe('task manager', async function () {
       })
     })
   })
+  describe('case №4 router', async function () {
+    it('set routes', function () {
+      return new Promise(async (resolve, reject) => {
+        console.log('ssssssssssssssssss', History)
+        resolve(true)
+      })
+    })
+    it('get static data', function () {
+      return new Promise(async (resolve, reject) => {
+
+        resolve(true)
+      })
+    })
+  })
 })
