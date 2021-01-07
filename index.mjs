@@ -84,7 +84,8 @@ describe('task manager', async function () {
   describe('case №4 router', async function () {
     it('set routes', function () {
       return new Promise(async (resolve, reject) => {
-        console.log('ssssssssssssssssss', History)
+        console.log('ssssssssssssssssss', history)
+        history.pushState({page: 1}, "title 1", "?page=1")
         resolve(true)
       })
     })
