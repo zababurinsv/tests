@@ -1,0 +1,91 @@
+const readline = require('readline');
+
+let rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+    terminal: false
+});
+
+function generate(s, l, r, pair) {
+    if (l === pair && r === pair) {
+        console.log(s)
+    } else {
+        if (l < pair) {
+            generate(s + '(', l + 1,  r, pair)
+        }
+        if (r < l ){
+            generate(s + ')', l, r + 1, pair)
+        }
+    }
+}
+
+let left = 0
+let right = 0
+let count = 0
+
+let R = () => (s, l, r, pair) {
+    if (l < pair) {
+        generate(s + '(', l + 1,  r, pair)
+    }
+    if (r < l ){
+        generate(s + ')', l, r + 1, pair)
+    }
+}
+
+let L = () => (s, l, r, pair) {
+    if (l < pair) {
+        generate(s + '(', l + 1,  r, pair)
+    }
+    if (r < l ){
+        generate(s + ')', l, r + 1, pair)
+    }
+}
+
+let C = () => (s, l, r, pair) {
+    if (l === pair && r === pair) {
+        console.log(s)
+    } else {
+        if (l < pair) {
+            generateL(s + '(', l + 1,  r, pair)
+        }
+        if (r < l ){
+            generateR(s + ')', l, r + 1, pair)
+        }
+    }
+}
+
+function generateR(s, l, r, pair) {
+    if (l < pair) {
+        generate(s + '(', l + 1,  r, pair)
+    }
+    if (r < l ){
+        generate(s + ')', l, r + 1, pair)
+    }
+}
+
+function generateL(s, l, r, pair) {
+    if (l < pair) {
+        generate(s + '(', l + 1,  r, pair)
+    }
+    if (r < l ){
+        generate(s + ')', l, r + 1, pair)
+    }
+}
+
+function generate(s, l, r, pair) {
+    if (l === pair && r === pair) {
+        console.log(s)
+        count++
+    } else {
+        if (l < pair) {
+            generateL(s + '(', l + 1,  r, pair)
+        }
+        if (r < l ){
+            generateR(s + ')', l, r + 1, pair)
+        }
+    }
+}
+
+rl.on('line', (line) => {
+    generate("", 0,0, parseInt(line,10))
+})

@@ -1,9 +1,11 @@
 let readline = require('readline');
+
 let rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
     terminal: false
 });
+
 function processSum(number) {
     console.log(number);
 }
@@ -18,6 +20,7 @@ rl.on('line', function(line) {
         processSum(sum)
         rl.close();
     }
-}).on('error', function(e) {
+})
+.on('error', function(e) {
 
 });

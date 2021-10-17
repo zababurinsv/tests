@@ -1,0 +1,67 @@
+const stream = require('stream');
+const { PassThrough, Duplex, Transform } = require("stream");
+const fs = require('fs');
+let fileName = __dirname + '/input.txt';
+let destPath = __dirname + '/output.txt';
+const writeStream = fs.createWriteStream(__dirname + '/output.txt', { encoding: "utf8" })
+
+class Throttle extends Duplex {
+    constructor(opt, time) {
+        super(opt);
+        this.delay = time;
+    }
+    _read() {}
+
+    _write(chunk, encoding, callback) {
+        this.push(chunk);
+        setTimeout(callback, this.delay);
+    }
+
+    _final() {
+        this.push(null);
+    }
+}
+
+const tunnel = new PassThrough();
+const throttle = new Throttle({
+    readableHighWaterMark: 2,
+    writableHighWaterMark: 2
+},1000);
+
+const readable = fs.createReadStream(fileName, {
+    encoding: 'utf8',
+    fd: null,
+    highWaterMark: 2
+});
+
+const writeable = fs.createWriteStream(destPath);
+
+let count = 0
+let data = []
+let previous = ''
+tunnel.on("data", (chunk) => {
+    if(count !== 0) {
+        console.log('previous:', previous,'chunk:', chunk.toString(), previous.toString() !==  chunk.toString())
+        if(parseInt(previous,10) !== parseInt(chunk.toString(),10) ) {
+            data.push(chunk.toString())
+            previous = chunk.toString()
+        }
+    }
+    console.log("bytes:", data);
+    count++
+});
+
+readable.on('end', () => {
+    writeStream.write(data.join(''));
+});
+
+readable.on('error', (e) => {
+    console.log("Some error occurred: ", e);
+});
+
+readable.pipe(tunnel)
+
+// writeable.on('finish', () => {
+//     console.log('finish', data)
+// });
+// readable.pipe(tunnel).pipe(writeable)

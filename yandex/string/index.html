@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="module">
+
+    let str = "TypeScript-forever"
+    let out = String.fromCharCode(...(str.split('').map((c, i) => c.charCodeAt(0) - i % 10))) === 'TxnbO^lbhk-emoaq_k' /* find str ? */
+    console.log('~~~~~~~', out)
+    // function strEncodeUTF16(str) {
+    //     var arr = []
+    //     for (var i = 0; i < str.length; i++) {
+    //         arr[i] = str.charCodeAt(i)
+    //     }
+    //     return arr
+    // }
+
+    // let utf16 = strEncodeUTF16('ABC');
+    // let ABC = String.fromCharCode(...[65, 66, 67]);
+    // console.log({
+    //     "true": "ABC, 65, 66, 67",
+    //     ABC: ABC,
+    //     utf16: utf16
+    // })
+    // stringOne = stringOne.join('')
+
+
+        // .split('')
+    // let stringTwo = stringOne.split('').map((c, i) => {  console.log(i,'->',c.charCodeAt(0)) })
+    // console.log(stringTwo)
+
+
+    // let string = 'TxnbO^lbhk-emoaq_k'
+    //  // UTF-16
+    // console.log(ffff)
+
+    // let start = "ABC"
+    // let end = "TxnbO^lbhk-emoaq_k"
+    // let endUtf16 = strEncodeUTF16(end);
+    //
+    // let endStr = end.split('');
+    // let startStr = start.split('')
+    //
+    //
+    // let startMap = startStr.map((c, i) => {
+    //     return c.charCodeAt(0) - i % 10
+    // })
+    // let endMap = endStr.map((c, i) => c.charCodeAt(0) + i % 10)
+    //
+    // let outtt = String.fromCharCode(... endMap)
+        // let gg = String.fromCharCode(...(str.split('').map((c, i) => c.charCodeAt(0) - i % 10)))
+    // let out = String.fromCharCode(...(str.split('').map((c, i) => c.charCodeAt(0) - i % 10))) === 'TxnbO^lbhk-emoaq_k' /* find str ? */
+    // console.log({
+    //     outtt: outtt,
+    //     map: {
+    //         startMap: startMap,
+    //         endMap: endMap,
+    //     },
+    //     split: {
+    //         startStr: startStr,
+    //         endStr: endStr
+    //     }
+    // })
+    // console.log('out',endStr)
+</script>
+</body>
+</html>

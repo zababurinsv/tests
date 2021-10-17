@@ -1,0 +1,19 @@
+{
+  "name": "yandex",
+  "version": "1.0.0",
+  "description": "tests",
+  "main": "index.mjs",
+  "scripts": {
+    "AB": "node ./node/AB.cjs",
+    "AB_file": "node ./node/AB_file.cjs",
+    "jewel": "node ./node/jewelAndStones.cjs",
+    "bin": "node ./node/bin.cjs",
+    "remove": "node ./node/remove.cjs",
+    "server": "node ./node/server.cjs",
+    "anagrams": "node ./node/anagrams.cjs",
+    "hooks": "node ./node/hooks.cjs",
+    "travel": "node ./node/travel.cjs"
+  },
+  "author": "",
+  "license": "ISC"
+}
