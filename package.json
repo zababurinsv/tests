@@ -1,5 +1,5 @@
 {
-  "name": "@orbit/tests",
+  "name": "store-tests",
   "version": "1.0.0",
   "description": "contract-deals",
   "main": "server.mjs",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zababurinsv/contract-deals.git"
+    "url": "git+https://github.com/zababurinsv/tests.git"
   },
   "keywords": [
     "game"
