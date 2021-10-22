@@ -7,6 +7,7 @@
     "doc": "contract-deals"
   },
   "scripts": {
+    "start": "node index.mjs",
     "git_tests": "git status && git add -A && git commit -am 'update' && git push"
   },
   "repository": {
@@ -22,6 +23,12 @@
     "url": "https://github.com/zababurinsv/tests/issues"
   },
   "homepage": "https://github.com/zababurinsv/tests#readme",
-  "dependencies": { },
-  "devDependencies": { }
+  "dependencies": {
+    "compression": "^1.7.4",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "cors": "^2.8.5",
+    "express-enqueue": "^1.0.0"
+  }
 }
